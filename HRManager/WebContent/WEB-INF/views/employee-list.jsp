@@ -14,36 +14,41 @@
 		<a href="login" class="pb-2 mr-4" style="float:right">logout</a>
 		<div class = "container py-5 text-center text-light">
 			<h2 class = "text-success py-4 text-center">Employee List</h2>
-			<button class="btn btn-info d-inline-block btn-lg mr-4" href="addEmployee" 
-						modelAttribute="employee">Add employee</button>
-			<button class="btn btn-info d-inline-block btn-lg" href="getEmployees"
-						modelAttribute="employee">Get employees</button>
-			<table class="table table-responsive">
-				<thead class="thead-dark text-light">
-					<tr>
-						<th>Employee Code</th>
-						<th>Employee Name</th>
-						<th>Employee Location</th>
-						<th>Employee Email</th>
-						<th>Employee Date of Birth</th>
-					</tr>
-				</thead>
-<!-- 				<tbody class="bg-light text-dark text-center">
-					<c:forEach var="flight" items="${filteredFlights}">
+			<a type="button" class="btn btn-info d-inline-block mr-4" href="showAddEmployeeForm">Add employee</a>
+			<a type="button" class="btn btn-info d-inline-block" href="getEmployees">Get employees</a>
+			<c:if test="${isGetEmployeesButtonClicked}">
+				<table class="table table-responsive my-5 ml-5 pl-4">
+					<thead class="thead-dark text-light">
 						<tr>
-							<td>${flight.flightNumber}</td>
-							<td>${flight.departureLocation}</td>
-							<td>${flight.arrivalLocation}</td>
-							<td>${flight.validTill}</td>
-							<td>${flight.flightTime}</td>
-							<td>${flight.flightDuration}</td>
-							<td>${flight.fare}</td>
-							<td>${flight.seatAvailability}</td>
-							<td>${flight.flightClass}</td>
+							<th>Employee Code</th>
+							<th>Employee Name</th>
+							<th>Employee Location</th>
+							<th>Employee Email</th>
+							<th>Employee Date of Birth</th>
+							<th>Action</th>
 						</tr>
-					</c:forEach>
-				</tbody> -->
-			</table>
+					</thead>
+					<tbody class="bg-light text-dark text-center">
+					
+						<c:forEach var="currentEmployee" items="${employeeList}" varStatus="status">
+							<c:url var="updateEmployeeLink" value="showUpdateEmployeePage">
+								<c:param name="employeeCode" value="${currentEmployee.employeeCode}"/>
+							</c:url>
+					
+							<tr>
+								<td>${currentEmployee.employeeCode}</td>
+								<td>${currentEmployee.employeeName}</td>
+								<td>${currentEmployee.employeeLocation}</td>
+								<td>${currentEmployee.employeeEmail}</td>
+								<td>${currentEmployee.employeeDateOfBirth}</td>
+								<td>
+									<a href="${updateEmployeeLink}">Update</a>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:if>
 		</div>
 		
 	</body>

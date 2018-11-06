@@ -7,20 +7,21 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import static com.nagarro.java.training.manager.constants.Constants.*;
 
 @Entity
-@Table(name = "manager")
+@Table(name = MANAGER_TABLE_NAME)
 public class Manager {
 
 	@Id
-	@Column(name = "username")
-	@NotNull(message = "Username cannot be empty!!!")
-	@Size(min = 1, message = "Username cannot be empty!!!")
+	@Column(name = MANAGER_TABLE_USERNAME_COLUMN)
+	@NotNull(message = MANAGER_USERNAME_VALIDATION_MESSAGE)
+	@Size(min = 1, message = MANAGER_USERNAME_VALIDATION_MESSAGE)
 	private String username;
 	
-	@Column(name = "password")
-	@NotNull(message = "Password cannot be empty!!!")
-	@Size(min = 1, message = "Password cannot be empty!!!")
+	@Column(name = MANAGER_TABLE_PASSWORD_COLUMN)
+	@NotNull(message = MANAGER_PASSWORD_VALIDATION_MESSAGE)
+	@Size(min = 1, message = MANAGER_PASSWORD_VALIDATION_MESSAGE)
 	private String password;
 
 	public String getUsername() {

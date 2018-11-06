@@ -15,6 +15,7 @@ import com.nagarro.java.training.manager.models.Employee;
 import com.nagarro.java.training.manager.models.Manager;
 import com.nagarro.java.training.manager.services.LoginService;
 import com.nagarro.java.training.manager.validations.Validations;
+import static com.nagarro.java.training.manager.constants.Constants.*;
 
 @Controller
 public class LoginController {
@@ -32,7 +33,7 @@ public class LoginController {
 	}
 	
 	
-	@PostMapping("/loginManager")
+	@PostMapping(LOGIN_MANAGER_CONTROLLER_PATH)
 	public String loginManager(@Valid @ModelAttribute("manager") Manager manager, 
 								BindingResult bindingResult, Model model){
 		
@@ -40,7 +41,7 @@ public class LoginController {
 		
 		if(bindingResult.hasErrors()) {
 			
-			return "log-in";
+			return LOGIN_PAGE;
 		
 		} else {
 			
@@ -50,7 +51,7 @@ public class LoginController {
 				
 				model.addAttribute("employee", new Employee());
 			
-				return "employee-list";
+				return EMPLOYEE_LIST_PAGE;
 				
 			} catch(Exception e) {
 				
@@ -58,7 +59,7 @@ public class LoginController {
 				
 				model.addAttribute("isLoginUnsuccessful", isLoginUnsuccessful);
 				
-				return "log-in";
+				return LOGIN_PAGE;
 			}
 			
 		}

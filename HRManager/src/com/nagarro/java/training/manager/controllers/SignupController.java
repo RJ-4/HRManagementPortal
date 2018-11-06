@@ -16,6 +16,7 @@ import com.nagarro.java.training.manager.models.Employee;
 import com.nagarro.java.training.manager.models.Manager;
 import com.nagarro.java.training.manager.services.SignUpService;
 import com.nagarro.java.training.manager.validations.Validations;
+import static com.nagarro.java.training.manager.constants.Constants.*;
 
 @Controller
 public class SignupController {
@@ -32,7 +33,7 @@ public class SignupController {
 		validations.checkForWhitespaces(dataBinder);
 	}
 	
-	@PostMapping("/signUpManager")
+	@PostMapping(SIGN_UP_CONTROLLER_PATH)
 	public String signUp(@Valid @ModelAttribute("manager") Manager manager, 
 								BindingResult bindingResult, 
 								@RequestParam("confirmPassword") String confirmPassword,
@@ -42,7 +43,7 @@ public class SignupController {
 		
 		if(bindingResult.hasErrors()) {
 			
-			return "sign-up";
+			return SIGN_UP_PAGE;
 		
 		} else if(!manager.getPassword().equals(confirmPassword)) {
 			
@@ -50,7 +51,7 @@ public class SignupController {
 			
 			model.addAttribute("passwordMismatch", isSignUpUnsuccessful);
 			
-			return "sign-up";
+			return SIGN_UP_PAGE;
 		
 		} else {
 			
@@ -60,7 +61,7 @@ public class SignupController {
 				
 				model.addAttribute("employee", new Employee());
 				
-				return "employee-list";
+				return EMPLOYEE_LIST_PAGE;
 			
 			} catch(Exception e) {
 				
@@ -68,7 +69,7 @@ public class SignupController {
 				
 				model.addAttribute("isSignUpUnsuccessful", isSignUpUnsuccessful);
 				
-				return "sign-up";
+				return SIGN_UP_PAGE;
 			}
 		}
 	}

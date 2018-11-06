@@ -13,4 +13,16 @@ public class Validations {
 		
 		dataBinder.registerCustomEditor(String.class, editor);
 	}
+	
+	public void checkDateOfBirth(String dateOfBirth) {
+		
+		String date[] = dateOfBirth.split("-");
+		
+		Integer.parseInt(date[2]);
+		
+		Integer.parseInt(date[1]);
+		
+		Integer.parseInt(date[0]);
+	}
+
 }
